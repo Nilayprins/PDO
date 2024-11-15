@@ -1,18 +1,13 @@
 <?php
+$host = "localhost:3306";
+$db = "winkel";
+$user = "root";
+$pass = "";
 
-class Database {
-public $pdo;
-
-public function __constuct($db = "test", $user="root", $pwd="", $host="localhost:3306") {
-    try {
-        $this->pdo = new PDO("mysql:host=$host;dbname=$db", $user, $pwd);
-        $this->pdo->setAttribute(PDO::ATTR_ARRMODE, PDO::ERRMODE_EXCEPTION);
-        echo "Connection to database $db";
-    } catch(PDOExeception $e) {
-        echo "Connection Failed: " . $e->getMessage();
-
-    }
-    }
+try {
+    $pdo = new PDO("mysql:host=$host;dbname=$db;", $user, $pass);
+    echo "Connected to database: $db <br>";
+} catch (PDOException $error){
+    die($error->getMessage());
 }
-$database1 = new Database();
 ?>
